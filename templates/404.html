@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="ui inverted error-404 attached segment">
+        <h1 class="ui center aligned header">404 URL not found</h1>
+        <a href="{% url 'shortener:index' %}" class="ui violet button">Back to Home Page</a>
+    </div>
+{% endblock content %}
