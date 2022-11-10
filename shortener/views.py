@@ -83,5 +83,5 @@ class DeleteView(LoginRequiredMixin, View):
                 surl.delete()
                 return JsonResponse({"message": "success"}, status=HTTPStatus.OK)
             return JsonResponse({"message": "Permision denied"}, status=HTTPStatus.METHOD_NOT_ALLOWED)
-        return JsonResponse({"message": "Smrl not found"}, status=HTTPStatus.NOT_FOUND)
 
+        return JsonResponse({"message": "Smrl not found"}, status=HTTPStatus.NOT_FOUND)
