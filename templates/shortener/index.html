@@ -1,0 +1,46 @@
+{% extends 'base.html' %} 
+
+{% block navigation %} 
+  {% include 'components/nav.html' %} 
+{% endblock navigation %} 
+
+{% block content %}
+  <div class="ui inverted text center aligned container segment">
+    <h1 class="ui inverted header">SMRL - URL shortener</h1>
+    <h2>Best place to shroten your urls</h2>
+  </div>
+
+  <div class="ui container">
+    <form
+      action="{% url 'shortener:index' %}"
+      method="post"
+      class="ui inverted form"
+    >
+      {% csrf_token %}
+      <div class="field">
+        <div class="ui left icon labeled action input">
+          <i class="linkify icon"></i>
+          {{ form.url }}
+          <button class="ui violet button" type="submit">Shorten</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  {% if short_url %}
+    <div class="ui segment center aligned container short-link">
+      <div class="ui left icon labeled action input">
+        <i class="linkify violet icon"></i>
+        <input id="short_link" type="text" value="{{ short_url }}" readonly>
+        <button class="ui violet right labeled icon button" onClick="copyUrl()">
+          <i class="copy icon"></i>
+          Copy
+        </button>
+      </div>
+    </div>
+  {% endif %}
+{% endblock content %}
+
+{% block footer %}
+  {% include 'components/footer.html' %}
+{% endblock footer %}

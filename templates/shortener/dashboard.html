@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block navigation %}
+    {% include 'components/nav.html' %}
+{% endblock navigation %}
+
+{% block content %}
+    <div class="ui main container inverted segment">
+        <h1 class="ui center aligned header">
+            Dashboard
+        </h1>
+
+        <table class="ui inverted table">
+            <thead>
+                <tr>
+                    <th>Original URL</th>
+                    <th>Short Url</th>
+                    <th>Visits</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for surl in surls %}
+                <tr>
+                    <td>{{ surl.url }}</td>
+                    <td class="copyable-cell">
+                        <i class="linkify icon"></i>
+                        <span class="copyable">
+                            {{ request.get_host }}/{{ surl.short}}
+                            {% comment %} sm.rl/{{ surl.short}} {% endcomment %}
+                        </span>
+                        <span class="tooltip ui pointing below label">Copy to clipboard</span>
+                    </td>
+                    <td>{{ surl.visit_count }}</td>
+                    <td>
+                        <button class="smrl-delete ui violet button" onClick="deleteSmrl(event)" data-url={% url 'shortener:delete' %} data-id={{ surl.id }}>Delete</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th>
+                        <div class="ui inverted pagination menu">
+                            {% if surls.has_previous %}
+                                <a href="?page=1" class="item">first</a>
+                                <a href="?page={{ surls.previous_page_number }}" class="item">
+                                    {{ surls.previous_page_number }}
+                                </a>
+                            {% endif %}
+
+                            <a class="active item">
+                                {{ surls.number }} of {{ surls.paginator.num_pages }}
+                            </a>
+
+                            {% if surls.has_next %}
+                                <a href="?page={{ surls.next_page_number }}" class="item">{{ surls.next_page_number }}</a>
+                                <a href="?page={{ surls.paginator.num_pages }}" class="item">
+                                    last
+                                </a>
+                            {% endif %}
+                        </div>
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    {% include 'components/modal.html' %}
+
+{% endblock content %}
+
+{% block footer %}
+    {% include 'components/footer.html' %}
+{% endblock footer %}

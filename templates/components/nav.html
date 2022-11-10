@@ -1,0 +1,34 @@
+{% load nav_tags %}
+
+<div class="ui inverted attached menu">
+  <div class="ui container">
+    <div class="ui item">
+      {% comment %} <img src="/images/logo.png" /> {% endcomment %}
+      {% comment %} <i class="staylinked icon"></i> {% endcomment %}
+      <h2 class="ui violet header">SMRL</h2>
+    </div>
+
+    <a href="{% url 'shortener:index' %}" class="{% active_link home_link %} item">Home</a>
+    <a href="{% url 'shortener:dashboard' %}" class="{% active_link dashboard_link %} item">Dashboard</a>
+
+    <div class="right menu">
+      {% if user.is_authenticated %}
+        <div class="ui item">
+          <h4 class="ui inverted header">{{ request.user.username }}</h4>
+        </div>
+
+        <div class="ui item">
+          <a class="ui violet button" href="{% url 'authentication:logout' %}">Logout</a>
+        </div>
+      {% else %}
+        <div class="ui item">
+          <div class="ui violet button">Sign up</div>
+        </div>
+
+        <div class="ui item">
+          <a class="ui button" href="{% url 'authentication:login' %}">Log-in</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
