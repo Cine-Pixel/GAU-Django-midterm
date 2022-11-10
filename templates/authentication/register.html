@@ -1,0 +1,103 @@
+{% extends 'base.html' %} 
+
+
+{% block content %}
+<div class="ui middle aligned center aligned grid">
+  <div class="column">
+    <h2 class="ui violet image header">
+      {% comment %} <i class="staylinked icon"></i> {% endcomment %}
+      SMRL
+      <div class="content">Create your account</div>
+    </h2>
+    <form class="ui large form" method="POST" action="{% url 'authentication:register' %}">
+      {% csrf_token %}
+
+      {% if error %}
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          {{ error }}
+        </div>
+      </div>
+      {% endif %}
+
+      <div class="ui stacked segment">
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="username" placeholder="Username" />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="envelope icon"></i>
+            <input type="email" name="email" placeholder="E-mail address" />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="password2" placeholder="Confirm password" />
+          </div>
+        </div>
+
+        <input type="submit" value="Register" class="ui fluid large violet submit button" />
+      </div>
+
+      <div class="ui error message"></div>
+    </form>
+
+    <div class="ui message">Already have and account? <a href="{% url 'authentication:login' %}">Sign In</a></div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block scripts %}
+  <script>
+    $(document)
+    .ready(function() {
+      $('.ui.form')
+        .form({
+          fields: {
+            email: {
+              identifier  : 'email',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your e-mail'
+                },
+                {
+                  type   : 'email',
+                  prompt : 'Please enter a valid e-mail'
+                }
+              ]
+            },
+            password: {
+              identifier  : 'password',
+              rules: [
+                {
+                  type   : 'empty',
+                  prompt : 'Please enter your password'
+                },
+                {
+                  type   : 'length[4]',
+                  prompt : 'Your password must be at least 6 characters'
+                }
+              ]
+            }
+          }
+        })
+      ;
+    })
+  ;
+  </script>
+{% endblock scripts %}
