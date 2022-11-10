@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #1B1C1D;
+}
+
+.pusher {
+    min-height: 650px;
+}
+
+.pusher > .grid {
+    height: 100%;
+}
+
+h2.ui.violet.image.header {
+    margin-top: 4rem;
+}
+.image {
+    margin-top: -100px;
+}
+.column {
+    max-width: 450px;
+}
+
+.ui.inverted.attached.segment {
+    min-height: 40vh;
+}
+
+h1.ui.inverted.header {
+    margin-top: 3rem;
+    font-size: 3.2rem;
+}
+
+h1.ui.center.header {
+    margin: 2rem 0;
+    font-size: 2.6rem;
+}
+
+.short-link {
+    background: none !important;
+}
+
+.short-link .action.input {
+    width: 40%;
+}
+
+.short-link input {
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: none !important;
+    color: #fff !important;
+    outline: none !important;
+    border: none !important;
+}
+
+.short-link input:focus, .short-link input:active {
+    outline: none !important;
+    border: none !important;
+}
+
+table .copyable-cell {
+    position: relative;
+}
+
+table .copyable {
+    cursor: pointer;
+    color: #2185D0;
+}
+
+table .tooltip {
+    position: absolute !important;
+    z-index: 1;
+    bottom: 60%;
+    left: 10%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+table .copyable:hover {
+    color: #16619b;
+}
+
+table .copyable:hover + .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.error-404 {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
